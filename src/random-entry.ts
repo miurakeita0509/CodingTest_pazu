@@ -4,7 +4,7 @@ function createRandomNum(rows: number, cols: number): number[][] {
     for (let i = 0; i < rows; i++) {
         arraynum[i] = new Array(cols);
         for (let j = 0; j < cols; j++) {
-            arraynum[i][j] = Math.floor(Math.random() * 6) + 1;
+            arraynum[i][j] = Math.floor(Math.random() * numLimit) + 1;
         }
     }
     return arraynum;
@@ -12,12 +12,19 @@ function createRandomNum(rows: number, cols: number): number[][] {
 
 // 配列をコンソールに表示する関数
 function printNum(num: number[][]): void {
-    for (const row of num) {
-        console.log(row.join(' '));
+    const headers = '    A B C D E F';
+    console.log(headers);
+    console.log("  _____________");
+
+    for (let i = 0; i < num.length; i++) {
+        const rowHeader = `${i + 1} | `;
+        const rowNumbers = num[i].join(' ');
+        console.log(rowHeader + rowNumbers);
     }
 }
 
-
+// ランダムの数値の上限を定義する定数
+const numLimit = 6;
 const rows = 5;
 const cols = 6;
 const randomNum = createRandomNum(rows, cols);
