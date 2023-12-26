@@ -1,4 +1,9 @@
-// 縦5横6の配列にランダムに1から6の数値を配置する関数
+/**
+ * 縦5、横6の配列に1から6のランダムな数値を配置する。
+ * @param rows - 縦方向のサイズ(行)
+ * @param cols - 横方向のサイズ(列)
+ * @returns - 1からnumLimitまでのランダムな整数が格納されたrows * colsの2次元配列
+ */
 function createRandomNum(rows: number, cols: number): number[][] {
     const arraynum = new Array(rows);
     for (let i = 0; i < rows; i++) {
@@ -10,7 +15,11 @@ function createRandomNum(rows: number, cols: number): number[][] {
     return arraynum;
 }
 
-// 配列をコンソールに表示する関数
+/**
+ * 与えられた2次元配列を整形してコンソールに表示する。
+ * 列はアルファベット、行は数字にて表す。
+ * @param num - 1～6までの整数を含む2次元配列。
+ */
 function printNum(num: number[][]): void {
     const headers = '    A B C D E F';
     console.log(headers);
