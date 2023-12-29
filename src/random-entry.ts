@@ -1,5 +1,5 @@
 /**
- * 縦5、横6の配列に1から6のランダムな数値を配置する。
+ * 縦5、横6の配列に1から6のランダムに3つ以上連続しない数値を配置する。
  * @param rows - 縦方向のサイズ(行)。
  * @param cols - 横方向のサイズ(列)。
  * @returns - 1からnumLimitまでのランダムな整数が格納されたrows * colsの2次元配列。
@@ -9,10 +9,26 @@ export function createRandomNum(rows: number, cols: number): number[][] {
     for (let i = 0; i < rows; i++) {
         arraynum[i] = new Array(cols);
         for (let j = 0; j < cols; j++) {
-            arraynum[i][j] = Math.floor(Math.random() * numLimit) + 1;
+            let num;
+            do {
+                num = Math.floor(Math.random() * numLimit) + 1;
+            } while (isSequential(arraynum, i, j, num));
+            arraynum[i][j] = num;
         }
     }
     return arraynum;
+}
+
+export function isSequential(grid: number[][], i: number, j: number, num: number): boolean {
+    // 横方向のチェック
+    if (j >= 2 && (grid[i][j - 1] === num) && (grid[i][j - 2] === num)) {
+        return true;
+    }
+    // 縦方向のチェック
+    if (i >= 2 && (grid[i - 1][j] === num) && (grid[i - 2][j] === num)) {
+        return true;
+    }
+    return false;
 }
 
 /**
