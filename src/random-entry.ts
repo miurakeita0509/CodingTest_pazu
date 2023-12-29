@@ -33,6 +33,17 @@ export function printNum(grid: number[][]): void {
 }
 
 /**
+ * 2次元配列の列をアルファベットに変換するための関数。
+ * @param columnNumber - アルファベットの位置を取得。
+ * @returns - 2次元配列の列に対応したアルファベットを返す。
+ * columnNumberの初期値が1から始めるため-1をしておく。
+ */
+export function columnNumberToName(columnNumber: number) {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return alphabet[columnNumber - 1];
+}
+
+/**
  * 縦横の同じ値が3つ以上続くときの結果を返す関数。
  * @param grid - ランダムに作成した2次元配列。
  * @param rows - 縦方向のサイズ(行)。
@@ -50,13 +61,17 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
                 count++;
             } else {
                 if (count >= 3) {
-                    sequences.push(`行 ${i + 1}, 列 ${j - count + 1} から ${j}まで : ${grid[i][j - 1]} が ${count} 回続いてます。`);
+                    const startColumn = columnNumberToName(j - count + 1);
+                    const endColumn = columnNumberToName(j);
+                    sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][j - 1]} が ${count} 回続いてます。`);
                 }
                 count = 1;
             }
         }
         if (count >= 3) {
-            sequences.push(`行 ${i + 1}, 列 ${cols - count + 1} から ${cols}まで : ${grid[i][cols - 1]} が ${count} 回続いてます。`);
+            const startColumn = columnNumberToName(cols - count + 1);
+            const endColumn = columnNumberToName(cols);
+            sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][cols - 1]} が ${count} 回続いてます。`);
         }
     }
 
@@ -68,13 +83,15 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
                 count++;
             } else {
                 if (count >= 3) {
-                    sequences.push(`列 ${j + 1}, 行 ${i - count + 1} から ${i}まで : ${grid[i - 1][j]} が ${count} 回続いてます。`);
+                    const startColumn = columnNumberToName(j + 1);
+                    sequences.push(`列 ${startColumn}, 行 ${i - count + 1} から行 ${i}まで : ${grid[i - 1][j]} が ${count} 回続いてます。`);
                 }
                 count = 1;
             }
         }
         if (count >= 3) {
-            sequences.push(`列 ${j + 1}, 行 ${rows - count + 1} から ${rows}まで : ${grid[rows - 1][j]} が ${count} 回続いてます。`);
+            const startColumn = columnNumberToName(j + 1);
+            sequences.push(`列 ${startColumn}, 行 ${rows - count + 1} から行 ${rows}まで : ${grid[rows - 1][j]} が ${count} 回続いてます。`);
         }
     }
 
