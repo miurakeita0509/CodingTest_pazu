@@ -19,6 +19,14 @@ export function createRandomNum(rows: number, cols: number): number[][] {
     return arraynum;
 }
 
+/**
+ * 3つ以上同じ値が連続しているか
+ * @param grid - 2次元配列
+ * @param i - 横方向の位置
+ * @param j - 縦方向の位置
+ * @param num - 入力しようとしているランダムの値
+ * @returns  - true か false
+ */
 export function isSequential(grid: number[][], i: number, j: number, num: number): boolean {
     // 横方向のチェック
     if (j >= 2 && (grid[i][j - 1] === num) && (grid[i][j - 2] === num)) {
@@ -54,7 +62,7 @@ export function printNum(grid: number[][]): void {
  * @returns - 2次元配列の列に対応したアルファベットを返す。
  * columnNumberの初期値が1から始めるため-1をしておく。
  */
-export function columnNumberToName(columnNumber: number) {
+export function columnNumberToName(columnNumber: number): string {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return alphabet[columnNumber - 1];
 }
@@ -69,7 +77,7 @@ export function columnNumberToName(columnNumber: number) {
 export function findSequences(grid: number[][], rows: number, cols: number): string[] {
     const sequences: string[] = [];
 
-    // 横方向の３つ以上連続した値を探す
+    // 横方向の3つ以上連続した値を探す
     for (let i = 0; i < rows; i++) {
         let count = 1;
         for (let j = 1; j < cols; j++) {
@@ -91,7 +99,7 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
         }
     }
 
-    // 縦方向の３つ以上連続した値を探す
+    // 縦方向の3つ以上連続した値を探す
     for (let j = 0; j < cols; j++) {
         let count = 1;
         for (let i = 1; i < rows; i++) {
