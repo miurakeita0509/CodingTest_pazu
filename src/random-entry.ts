@@ -1,3 +1,5 @@
+const numLimit = 6;  // ランダムの数値の上限を定義する定数。
+
 /**
  * 縦5、横6の配列に1から6のランダムに3つ以上連続しない数値を配置する。
  * @param rows - 縦方向のサイズ(行)。
@@ -5,27 +7,27 @@
  * @returns - 1からnumLimitまでのランダムな整数が格納されたrows * colsの2次元配列。
  */
 export function createRandomNum(rows: number, cols: number): number[][] {
-    const arraynum = new Array(rows);
+    const grid = new Array(rows);
     for (let i = 0; i < rows; i++) {
-        arraynum[i] = new Array(cols);
+        grid[i] = new Array(cols);
         for (let j = 0; j < cols; j++) {
             let num;
             do {
                 num = Math.floor(Math.random() * numLimit) + 1;
-            } while (isSequential(arraynum, i, j, num));
-            arraynum[i][j] = num;
+            } while (isSequential(grid, i, j, num));
+            grid[i][j] = num;
         }
     }
-    return arraynum;
+    return grid;
 }
 
 /**
- * 3つ以上同じ値が連続しているか
- * @param grid - 2次元配列
- * @param i - 横方向の位置
- * @param j - 縦方向の位置
- * @param num - 入力しようとしているランダムの値
- * @returns  - true か false
+ * 3つ以上同じ値が連続しているか。
+ * @param grid - 2次元配列。
+ * @param i - 横方向の位置。
+ * @param j - 縦方向の位置。
+ * @param num - 入力しようとしているランダムの値。
+ * @returns  - true か false。
  */
 export function isSequential(grid: number[][], i: number, j: number, num: number): boolean {
     // 横方向のチェック
@@ -121,13 +123,3 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
 
     return sequences;
 }
-
-
-const numLimit = 6;  // ランダムの数値の上限を定義する定数。
-const rows = 5;  // 縦（行）を定義する定数。
-const cols = 6;  // 横（列）定義する定数。
-const randomNum = createRandomNum(rows, cols);
-const sequences = findSequences(randomNum, rows, cols);
-printNum(randomNum);
-console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
-sequences.forEach(seq => console.log(seq));
