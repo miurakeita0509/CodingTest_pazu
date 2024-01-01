@@ -1,4 +1,4 @@
-import { createRandomNum, findSequences, columnNumberToName,isSequential } from './random-entry';
+import { createRandomNum, findSequences, columnNumberToName, isSequential } from './randomEntry';
 
 /**
  * createRandomNum関数のテスト
