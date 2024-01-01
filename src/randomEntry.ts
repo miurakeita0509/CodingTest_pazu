@@ -1,5 +1,3 @@
-const numLimit = 6;  // ランダムの数値の上限を定義する定数。
-
 /**
  * 縦5、横6の配列に1から6のランダムに3つ以上連続しない数値を配置する。
  * @param rows - 縦方向のサイズ(行)。
@@ -7,6 +5,7 @@ const numLimit = 6;  // ランダムの数値の上限を定義する定数。
  * @returns - 1からnumLimitまでのランダムな整数が格納されたrows * colsの2次元配列。
  */
 export function createRandomNum(rows: number, cols: number): number[][] {
+    const numLimit = 6;  // ランダムの数値の上限を定義する定数。
     const grid = new Array(rows);
     for (let i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
