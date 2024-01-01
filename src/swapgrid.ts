@@ -33,6 +33,21 @@ function swapValues(grid: number[][], row1: number, col1: number, row2: number, 
 }
 
 /**
+ * 入力した値が隣接しているかのチェック。
+ */
+function areAdjacency(row1: number, col1: number, row2: number, col2: number): boolean {
+    // 縦方向の隣接をチェック。
+    if (col1 === col2 && Math.abs(row1 - row2) === 1) {
+        return true;
+    }
+    // 横方向の隣接をチェック。
+    if (row1 === row2 && Math.abs(col1 - col2) === 1) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * ユーザーに入れ替えたい位置を確認し、縦もしくは横に3つ以上同じ値が並ぶ組み合わせを列挙する。
  */
 function promptForSwapAndEnumerate(): void {
@@ -47,11 +62,15 @@ function promptForSwapAndEnumerate(): void {
         if (positions.length === 2) {
             const [row1, col1] = parsePosition(positions[0]);
             const [row2, col2] = parsePosition(positions[1]);
-            const newGrid = swapValues(randomNum, row1, col1, row2, col2);
-            const newSequences = findSequences(newGrid, rows, cols);
-            printNum(newGrid);
-            console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
-            newSequences.forEach(seq => console.log(seq));
+            if (areAdjacency(row1, col1, row2, col2)) {
+                const newGrid = swapValues(randomNum, row1, col1, row2, col2);
+                const newSequences = findSequences(newGrid, rows, cols);
+                printNum(newGrid);
+                console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
+                newSequences.forEach(seq => console.log(seq));
+            } else {
+                console.log("入力された位置は隣接していません。");
+            }
         } else {
             console.log("無効な入力です。");
         }
