@@ -81,13 +81,13 @@ describe('swapValues', () => {
  */
 describe('areAdjacency', () => {
   it('should return true', () => {
-    expect(areAdjacency(0, 0, 0, 1)).toEqual(true); // 横隣接
-    expect(areAdjacency(0, 0, 1, 0)).toEqual(true); // 縦隣接
+    expect(areAdjacency(0, 0, 0, 1)).toEqual(true); // 横隣接。
+    expect(areAdjacency(0, 0, 1, 0)).toEqual(true); // 縦隣接。
+    expect(areAdjacency(0, 0, 1, 1)).toEqual(true); // 斜め隣接。
   });
 
   it('should return false', () => {
-    expect(areAdjacency(0, 0, 1, 1)).toEqual(false); // 対角
-    expect(areAdjacency(0, 0, 0, 2)).toEqual(false); // 横方向で隣接していない
-    expect(areAdjacency(0, 0, 2, 0)).toEqual(false); // 縦方向で隣接していない
+    expect(areAdjacency(0, 0, 0, 2)).toEqual(false); // 横方向で隣接していない。
+    expect(areAdjacency(0, 0, 2, 0)).toEqual(false); // 縦方向で隣接していない。
   });
 });

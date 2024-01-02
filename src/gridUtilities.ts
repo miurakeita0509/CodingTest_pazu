@@ -37,5 +37,9 @@ export function areAdjacency(row1: number, col1: number, row2: number, col2: num
     if (row1 === row2 && Math.abs(col1 - col2) === 1) {
         return true;
     }
+    // 斜め方向の隣接をチェック。
+    if (Math.abs(row1 - row2) === 1 && Math.abs(col1 - col2) === 1) {
+        return true;
+    }
     return false;
 }
