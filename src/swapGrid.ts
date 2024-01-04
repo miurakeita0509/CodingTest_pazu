@@ -1,5 +1,5 @@
-import { createRandomNum, findSequences, printNum } from './randomEntry';
-import { parsePosition, swapValues, areAdjacency } from './gridUtilities';
+import { createRandomNum, printNum } from './randomEntry';
+import { parsePosition, swapValues, findSequences, areAdjacency } from './gridUtilities';
 import * as readline from 'readline';
 import { CONFIG } from './config';
 
