@@ -58,16 +58,16 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
     const sequences: string[] = [];
 
     // 横方向の3つ以上連続した値を探す
-    for (let i = 0; i < rows; i++) {
+    for (let row_i = 0; row_i < rows; row_i++) {
         let count = 1;
-        for (let j = 1; j < cols; j++) {
-            if (grid[i][j] === grid[i][j - 1]) {
+        for (let col_j = 1; col_j < cols; col_j++) {
+            if (grid[row_i][col_j] === grid[row_i][col_j - 1]) {
                 count++;
             } else {
                 if (count >= CONFIG.sequentialValues) {
-                    const startColumn = columnNumberToName(j - count + 1);
-                    const endColumn = columnNumberToName(j);
-                    sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][j - 1]} が ${count} 回続いてます。`);
+                    const startColumn = columnNumberToName(col_j - count + 1);
+                    const endColumn = columnNumberToName(col_j);
+                    sequences.push(`行 ${row_i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[row_i][col_j - 1]} が ${count} 回続いてます。`);
                 }
                 count = 1;
             }
@@ -75,27 +75,27 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
         if (count >= CONFIG.sequentialValues) {
             const startColumn = columnNumberToName(cols - count + 1);
             const endColumn = columnNumberToName(cols);
-            sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][cols - 1]} が ${count} 回続いてます。`);
+            sequences.push(`行 ${row_i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[row_i][cols - 1]} が ${count} 回続いてます。`);
         }
     }
 
     // 縦方向の3つ以上連続した値を探す
-    for (let j = 0; j < cols; j++) {
+    for (let col_j = 0; col_j < cols; col_j++) {
         let count = 1;
-        for (let i = 1; i < rows; i++) {
-            if (grid[i][j] === grid[i - 1][j]) {
+        for (let row_i = 1; row_i < rows; row_i++) {
+            if (grid[row_i][col_j] === grid[row_i - 1][col_j]) {
                 count++;
             } else {
                 if (count >= CONFIG.sequentialValues) {
-                    const startColumn = columnNumberToName(j + 1);
-                    sequences.push(`列 ${startColumn}, 行 ${i - count + 1} から行 ${i}まで : ${grid[i - 1][j]} が ${count} 回続いてます。`);
+                    const startColumn = columnNumberToName(col_j + 1);
+                    sequences.push(`列 ${startColumn}, 行 ${row_i - count + 1} から行 ${row_i}まで : ${grid[row_i - 1][col_j]} が ${count} 回続いてます。`);
                 }
                 count = 1;
             }
         }
         if (count >= CONFIG.sequentialValues) {
-            const startColumn = columnNumberToName(j + 1);
-            sequences.push(`列 ${startColumn}, 行 ${rows - count + 1} から行 ${rows}まで : ${grid[rows - 1][j]} が ${count} 回続いてます。`);
+            const startColumn = columnNumberToName(col_j + 1);
+            sequences.push(`列 ${startColumn}, 行 ${rows - count + 1} から行 ${rows}まで : ${grid[rows - 1][col_j]} が ${count} 回続いてます。`);
         }
     }
 
