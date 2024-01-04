@@ -1,3 +1,5 @@
+import { CONFIG } from './config';
+
 /**
  * 縦5、横6の配列に1から6のランダムに3つ以上連続しない数値を配置する。
  * @param rows - 縦方向のサイズ(行)。
@@ -5,14 +7,13 @@
  * @returns - 1からnumLimitまでのランダムな整数が格納されたrows * colsの2次元配列。
  */
 export function createRandomNum(rows: number, cols: number): number[][] {
-    const numLimit = 6;  // ランダムの数値の上限を定義する定数。
     const grid = new Array(rows);
     for (let i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
         for (let j = 0; j < cols; j++) {
             let num;
             do {
-                num = Math.floor(Math.random() * numLimit) + 1;
+                num = Math.floor(Math.random() * CONFIG.numLimit) + 1;
             } while (isSequential(grid, i, j, num));
             grid[i][j] = num;
         }
@@ -85,7 +86,7 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
             if (grid[i][j] === grid[i][j - 1]) {
                 count++;
             } else {
-                if (count >= 3) {
+                if (count >= CONFIG.sequentialValues) {
                     const startColumn = columnNumberToName(j - count + 1);
                     const endColumn = columnNumberToName(j);
                     sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][j - 1]} が ${count} 回続いてます。`);
@@ -93,7 +94,7 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
                 count = 1;
             }
         }
-        if (count >= 3) {
+        if (count >= CONFIG.sequentialValues) {
             const startColumn = columnNumberToName(cols - count + 1);
             const endColumn = columnNumberToName(cols);
             sequences.push(`行 ${i + 1}, 列 ${startColumn} から列 ${endColumn}まで : ${grid[i][cols - 1]} が ${count} 回続いてます。`);
@@ -107,14 +108,14 @@ export function findSequences(grid: number[][], rows: number, cols: number): str
             if (grid[i][j] === grid[i - 1][j]) {
                 count++;
             } else {
-                if (count >= 3) {
+                if (count >= CONFIG.sequentialValues) {
                     const startColumn = columnNumberToName(j + 1);
                     sequences.push(`列 ${startColumn}, 行 ${i - count + 1} から行 ${i}まで : ${grid[i - 1][j]} が ${count} 回続いてます。`);
                 }
                 count = 1;
             }
         }
-        if (count >= 3) {
+        if (count >= CONFIG.sequentialValues) {
             const startColumn = columnNumberToName(j + 1);
             sequences.push(`列 ${startColumn}, 行 ${rows - count + 1} から行 ${rows}まで : ${grid[rows - 1][j]} が ${count} 回続いてます。`);
         }
