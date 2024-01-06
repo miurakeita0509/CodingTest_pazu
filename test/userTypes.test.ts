@@ -1,5 +1,6 @@
 import { createPoint } from '../src/userTypes';
 
+//行列確認。
 describe('createPoint function', () => {
   it('should create x and y', () => {
     const x = 5;
