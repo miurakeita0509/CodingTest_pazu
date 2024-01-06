@@ -36,8 +36,15 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
         const newGrid = swapValues(randomNum, row1, col1, row2, col2);
         const newSequences = findSequences(newGrid, rows, cols);
         printNum(newGrid);
-        console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
-        newSequences.forEach(seq => console.log(seq));
+
+        if (newSequences.length > 0) {
+            console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
+            newSequences.forEach(seq => console.log(seq));
+        } else {
+            console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
+            console.log("縦もしくは横に3つ以上同じ値が並ぶ組み合わせはありません。");
+        }
+
         rl.close();
     }
 
