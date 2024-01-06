@@ -24,9 +24,16 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
             console.log("無効な入力です。");
             return askForPositions();
         }
+        
+        // parsePosition関数の戻り値をPointオブジェクトとして受け取る。
+        const pos1 = parsePosition(positions[0]);
+        const pos2 = parsePosition(positions[1]);
 
-        const [row1, col1] = parsePosition(positions[0]);
-        const [row2, col2] = parsePosition(positions[1]);
+        // Pointオブジェクトから行と列のインデックスを取得。
+        const row1 = pos1.x;
+        const row2 = pos1.y;
+        const col1 = pos2.x;
+        const col2 = pos2.y;
 
         if (!areAdjacency(row1, col1, row2, col2)) {
             console.log("入力された位置は隣接していません。");

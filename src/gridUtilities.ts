@@ -1,16 +1,18 @@
 import { columnNumberToName } from './randomEntry';
 import { CONFIG } from './config';
+import { Point } from './userTypes';
 
 /**
  * 入力された位置の文字列を行と列のインデックスに変換する。
  * @param position - "行列"の形式の文字列（例: "1A"）。
  * @returns - 行と列のインデックスのタプル。
  */
-export function parsePosition(position: string): [number, number] {
-    const row = parseInt(position[0], 10) - 1;
-    const colChar = position[1].toUpperCase();
-    const col = colChar.charCodeAt(0) - 'A'.charCodeAt(0);
-    return [row, col];
+export function parsePosition(position: string): Point {
+    const x = parseInt(position[0], 10) - 1;
+    const yChar = position[1].toUpperCase();
+    const y = yChar.charCodeAt(0) - 'A'.charCodeAt(0);
+
+    return {x, y};
 }
 
 /**
