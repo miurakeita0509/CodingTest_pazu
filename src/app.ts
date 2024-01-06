@@ -36,8 +36,8 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
 
         // Pointオブジェクトから行と列のインデックスを取得。
         const row1 = pos1.x;
-        const row2 = pos1.y;
-        const col1 = pos2.x;
+        const col1 = pos1.y;
+        const row2 = pos2.x;
         const col2 = pos2.y;
 
         if (!areAdjacency(row1, col1, row2, col2)) {

@@ -12,9 +12,9 @@ export function parsePosition(position: string): Point | null {
     const yChar = position[1].toUpperCase();
     const y = yChar.charCodeAt(0) - 'A'.charCodeAt(0);
 
-    // 範囲外の入力をチェック
-    if (x < 0 || y >= CONFIG.rows || x < 0 || y >= CONFIG.cols) {
-        return null; // 無効な入力
+    // 範囲外の入力をチェック。
+    if (x < 0 || x >= CONFIG.rows || y < 0 || y >= CONFIG.cols) {
+        return null; // 無効な入力。
     }
 
     return {x, y};
