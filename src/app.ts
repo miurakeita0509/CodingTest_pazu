@@ -29,6 +29,11 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
         const pos1 = parsePosition(positions[0]);
         const pos2 = parsePosition(positions[1]);
 
+        if (!pos1 || !pos2) {
+            console.log("入力された位置は範囲外です。");
+            return askForPositions();
+        }
+
         // Pointオブジェクトから行と列のインデックスを取得。
         const row1 = pos1.x;
         const row2 = pos1.y;

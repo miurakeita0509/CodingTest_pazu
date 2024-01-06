@@ -7,10 +7,15 @@ import { Point } from './userTypes';
  * @param position - "行列"の形式の文字列（例: "1A"）。
  * @returns - 行と列のインデックスのタプル。
  */
-export function parsePosition(position: string): Point {
+export function parsePosition(position: string): Point | null {
     const x = parseInt(position[0], 10) - 1;
     const yChar = position[1].toUpperCase();
     const y = yChar.charCodeAt(0) - 'A'.charCodeAt(0);
+
+    // 範囲外の入力をチェック
+    if (x < 0 || y >= CONFIG.rows || x < 0 || y >= CONFIG.cols) {
+        return null; // 無効な入力
+    }
 
     return {x, y};
 }
