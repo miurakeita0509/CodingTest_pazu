@@ -25,8 +25,20 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
             return askForPositions();
         }
 
-        const [row1, col1] = parsePosition(positions[0]);
-        const [row2, col2] = parsePosition(positions[1]);
+        // parsePosition関数の戻り値をPointオブジェクトとして受け取る。
+        const pos1 = parsePosition(positions[0]);
+        const pos2 = parsePosition(positions[1]);
+
+        if (!pos1 || !pos2) {
+            console.log("入力された位置は範囲外です。");
+            return askForPositions();
+        }
+
+        // Pointオブジェクトから行と列のインデックスを取得。
+        const row1 = pos1.x;
+        const col1 = pos1.y;
+        const row2 = pos2.x;
+        const col2 = pos2.y;
 
         if (!areAdjacency(row1, col1, row2, col2)) {
             console.log("入力された位置は隣接していません。");
@@ -36,15 +48,22 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
         const newGrid = swapValues(randomNum, row1, col1, row2, col2);
         const newSequences = findSequences(newGrid, rows, cols);
         printNum(newGrid);
-        console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
-        newSequences.forEach(seq => console.log(seq));
+
+        if (newSequences.length > 0) {
+            console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
+            newSequences.forEach(seq => console.log(seq));
+        } else {
+            console.log("\n縦もしくは横に3つ以上同じ値が並ぶ組み合わせの列挙");
+            console.log("縦もしくは横に3つ以上同じ値が並ぶ組み合わせはありません。");
+        }
+
         rl.close();
     }
 
     askForPositions();
 }
 
-function main(): void{
+function main(): void {
     const randomNum = createRandomNum(CONFIG.rows, CONFIG.cols);
     const sequences = findSequences(randomNum, CONFIG.rows, CONFIG.cols);
     promptForSwapAndEnumerate(randomNum, CONFIG.rows, CONFIG.cols);
