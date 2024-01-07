@@ -24,7 +24,7 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
             console.log("無効な入力です。");
             return askForPositions();
         }
-        
+
         // parsePosition関数の戻り値をPointオブジェクトとして受け取る。
         const pos1 = parsePosition(positions[0]);
         const pos2 = parsePosition(positions[1]);
@@ -63,7 +63,7 @@ function promptForSwapAndEnumerate(randomNum: number[][], rows: number, cols: nu
     askForPositions();
 }
 
-function main(): void{
+function main(): void {
     const randomNum = createRandomNum(CONFIG.rows, CONFIG.cols);
     const sequences = findSequences(randomNum, CONFIG.rows, CONFIG.cols);
     promptForSwapAndEnumerate(randomNum, CONFIG.rows, CONFIG.cols);

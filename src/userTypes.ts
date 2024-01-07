@@ -5,5 +5,5 @@ export interface Point {
 }
 
 export function createPoint(x: number, y: number): Point {
-    return {x, y};
+    return { x, y };
 }

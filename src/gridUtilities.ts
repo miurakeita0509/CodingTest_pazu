@@ -17,7 +17,7 @@ export function parsePosition(position: string): Point | null {
         return null; // 無効な入力。
     }
 
-    return {x, y};
+    return { x, y };
 }
 
 /**
