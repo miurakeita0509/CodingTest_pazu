@@ -6,48 +6,48 @@ import { parsePosition, swapValues, areAdjacency, findSequences } from '../src/g
  */
 describe('parsePosition', () => {
   it('should convert position 1row', () => {
-    expect(parsePosition("1A")).toEqual({"x": 0, "y": 0});
-    expect(parsePosition("1B")).toEqual({"x": 0, "y": 1});
-    expect(parsePosition("1C")).toEqual({"x": 0, "y": 2});
-    expect(parsePosition("1D")).toEqual({"x": 0, "y": 3});
-    expect(parsePosition("1E")).toEqual({"x": 0, "y": 4});
-    expect(parsePosition("1F")).toEqual({"x": 0, "y": 5});
+    expect(parsePosition("1A")).toEqual({ "x": 0, "y": 0 });
+    expect(parsePosition("1B")).toEqual({ "x": 0, "y": 1 });
+    expect(parsePosition("1C")).toEqual({ "x": 0, "y": 2 });
+    expect(parsePosition("1D")).toEqual({ "x": 0, "y": 3 });
+    expect(parsePosition("1E")).toEqual({ "x": 0, "y": 4 });
+    expect(parsePosition("1F")).toEqual({ "x": 0, "y": 5 });
   });
 
   it('should convert position 2row', () => {
-    expect(parsePosition("2A")).toEqual({"x": 1, "y": 0});
-    expect(parsePosition("2B")).toEqual({"x": 1, "y": 1});
-    expect(parsePosition("2C")).toEqual({"x": 1, "y": 2});
-    expect(parsePosition("2D")).toEqual({"x": 1, "y": 3});
-    expect(parsePosition("2E")).toEqual({"x": 1, "y": 4});
-    expect(parsePosition("2F")).toEqual({"x": 1, "y": 5});
+    expect(parsePosition("2A")).toEqual({ "x": 1, "y": 0 });
+    expect(parsePosition("2B")).toEqual({ "x": 1, "y": 1 });
+    expect(parsePosition("2C")).toEqual({ "x": 1, "y": 2 });
+    expect(parsePosition("2D")).toEqual({ "x": 1, "y": 3 });
+    expect(parsePosition("2E")).toEqual({ "x": 1, "y": 4 });
+    expect(parsePosition("2F")).toEqual({ "x": 1, "y": 5 });
   });
 
   it('should convert position 3row', () => {
-    expect(parsePosition("3A")).toEqual({"x": 2, "y": 0});
-    expect(parsePosition("3B")).toEqual({"x": 2, "y": 1});
-    expect(parsePosition("3C")).toEqual({"x": 2, "y": 2});
-    expect(parsePosition("3D")).toEqual({"x": 2, "y": 3});
-    expect(parsePosition("3E")).toEqual({"x": 2, "y": 4});
-    expect(parsePosition("3F")).toEqual({"x": 2, "y": 5});
+    expect(parsePosition("3A")).toEqual({ "x": 2, "y": 0 });
+    expect(parsePosition("3B")).toEqual({ "x": 2, "y": 1 });
+    expect(parsePosition("3C")).toEqual({ "x": 2, "y": 2 });
+    expect(parsePosition("3D")).toEqual({ "x": 2, "y": 3 });
+    expect(parsePosition("3E")).toEqual({ "x": 2, "y": 4 });
+    expect(parsePosition("3F")).toEqual({ "x": 2, "y": 5 });
   });
 
   it('should convert position 4row', () => {
-    expect(parsePosition("4A")).toEqual({"x": 3, "y": 0});
-    expect(parsePosition("4B")).toEqual({"x": 3, "y": 1});
-    expect(parsePosition("4C")).toEqual({"x": 3, "y": 2});
-    expect(parsePosition("4D")).toEqual({"x": 3, "y": 3});
-    expect(parsePosition("4E")).toEqual({"x": 3, "y": 4});
-    expect(parsePosition("4F")).toEqual({"x": 3, "y": 5});
+    expect(parsePosition("4A")).toEqual({ "x": 3, "y": 0 });
+    expect(parsePosition("4B")).toEqual({ "x": 3, "y": 1 });
+    expect(parsePosition("4C")).toEqual({ "x": 3, "y": 2 });
+    expect(parsePosition("4D")).toEqual({ "x": 3, "y": 3 });
+    expect(parsePosition("4E")).toEqual({ "x": 3, "y": 4 });
+    expect(parsePosition("4F")).toEqual({ "x": 3, "y": 5 });
   });
 
   it('should convert position 5row', () => {
-    expect(parsePosition("5A")).toEqual({"x": 4, "y": 0});
-    expect(parsePosition("5B")).toEqual({"x": 4, "y": 1});
-    expect(parsePosition("5C")).toEqual({"x": 4, "y": 2});
-    expect(parsePosition("5D")).toEqual({"x": 4, "y": 3});
-    expect(parsePosition("5E")).toEqual({"x": 4, "y": 4});
-    expect(parsePosition("5F")).toEqual({"x": 4, "y": 5});
+    expect(parsePosition("5A")).toEqual({ "x": 4, "y": 0 });
+    expect(parsePosition("5B")).toEqual({ "x": 4, "y": 1 });
+    expect(parsePosition("5C")).toEqual({ "x": 4, "y": 2 });
+    expect(parsePosition("5D")).toEqual({ "x": 4, "y": 3 });
+    expect(parsePosition("5E")).toEqual({ "x": 4, "y": 4 });
+    expect(parsePosition("5F")).toEqual({ "x": 4, "y": 5 });
   });
 });
 
@@ -58,18 +58,18 @@ describe('parsePosition', () => {
 describe('swapValues', () => {
   it('should swap positions', () => {
     const grid = [
-        [1, 3, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1]
+      [1, 3, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1]
     ];
     const expectedGrid = [
-        [3, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1]
+      [3, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1]
     ];
     expect(swapValues(grid, 0, 0, 0, 1)).toEqual(expectedGrid);
   });
@@ -143,7 +143,7 @@ describe('findSequences', () => {
     const testGrid = [
       [1, 1, 1, 1, 1, 1],
       [2, 2, 2, 2, 2, 2],
-      [3, 3, 3, 3, 3, 3],  
+      [3, 3, 3, 3, 3, 3],
       [4, 4, 4, 4, 4, 4],
       [5, 5, 5, 5, 5, 5]  // 各行で3つの1, 2, 3, 4, 5, 6が連続。
     ];
