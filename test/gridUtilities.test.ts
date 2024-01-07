@@ -54,6 +54,7 @@ describe('parsePosition', () => {
 /**
  * swapValues関数のテスト。
  * 任意の値だけが交換されるか。
+ * 実際の配列と期待される配列の比較。
  */
 describe('swapValues', () => {
   it('should swap positions', () => {
@@ -71,7 +72,9 @@ describe('swapValues', () => {
       [1, 1, 1, 1, 1, 1],
       [1, 1, 1, 1, 1, 1]
     ];
-    expect(swapValues(grid, 0, 0, 0, 1)).toEqual(expectedGrid);
+    const actualGrid = swapValues(grid, 0, 0, 0, 1)
+    expect(actualGrid).toEqual(expectedGrid);
+    expect(actualGrid).not.toBe(grid);
   });
 });
 
