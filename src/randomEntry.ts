@@ -8,14 +8,14 @@ import { CONFIG } from './config';
  */
 export function createRandomNum(rows: number, cols: number): number[][] {
     const grid = new Array(rows);
-    for (let row_i = 0; row_i < rows; row_i++) {
-        grid[row_i] = new Array(cols);
-        for (let col_j = 0; col_j < cols; col_j++) {
+    for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
+        grid[rowIndex] = new Array(cols);
+        for (let colIndex = 0; colIndex < cols; colIndex++) {
             let num;
             do {
                 num = Math.floor(Math.random() * CONFIG.numLimit) + 1;
-            } while (isSequential(grid, row_i, col_j, num));
-            grid[row_i][col_j] = num;
+            } while (isSequential(grid, rowIndex, colIndex, num));
+            grid[rowIndex][colIndex] = num;
         }
     }
     return grid;
@@ -24,18 +24,18 @@ export function createRandomNum(rows: number, cols: number): number[][] {
 /**
  * 3つ以上同じ値が連続しているか。
  * @param grid - 2次元配列。
- * @param row_i - 横方向の位置。
- * @param col_j - 縦方向の位置。
+ * @param rowIndex - 横方向の位置。
+ * @param colIndex - 縦方向の位置。
  * @param num - 入力しようとしているランダムの値。
  * @returns  - true か false。
  */
-export function isSequential(grid: number[][], row_i: number, col_j: number, num: number): boolean {
+export function isSequential(grid: number[][], rowIndex: number, colIndex: number, num: number): boolean {
     // 横方向のチェック
-    if (col_j >= 2 && (grid[row_i][col_j - 1] === num) && (grid[row_i][col_j - 2] === num)) {
+    if (colIndex >= 2 && (grid[rowIndex][colIndex - 1] === num) && (grid[rowIndex][colIndex - 2] === num)) {
         return true;
     }
     // 縦方向のチェック
-    if (row_i >= 2 && (grid[row_i - 1][col_j] === num) && (grid[row_i - 2][col_j] === num)) {
+    if (rowIndex >= 2 && (grid[rowIndex - 1][colIndex] === num) && (grid[rowIndex - 2][colIndex] === num)) {
         return true;
     }
     return false;
@@ -51,9 +51,9 @@ export function printNum(grid: number[][]): void {
     console.log(headers);
     console.log("  _____________");
 
-    for (let row_i = 0; row_i < grid.length; row_i++) {
-        const rowHeader = `${row_i + 1} | `;
-        const rowNumbers = grid[row_i].join(' ');
+    for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
+        const rowHeader = `${rowIndex + 1} | `;
+        const rowNumbers = grid[rowIndex].join(' ');
         console.log(rowHeader + rowNumbers);
     }
 }
