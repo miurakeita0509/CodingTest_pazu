@@ -24,6 +24,12 @@ npx jest --verbose
 
 ## ビルド
 
+パッケージインストールコマンド
+
+```
+npm install
+```
+
 ビルドコマンド
 
 ```cmd
